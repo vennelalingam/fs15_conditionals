@@ -1,0 +1,22 @@
+Short - circuit evaluation eg with ||
+
+let a; 
+undefined (falsy value)
+
+let b = null; 
+null (falsy value)
+
+let c = undefined;
+undefined (falsy value)
+
+let d = 4; 
+number (truthy value) 
+
+let e = "five";
+short circuits before reaching here
+since (d = 4) evaluates to truth.
+
+let f = a || b || c || d || e;
+console.log(f); 4
+
+|| checks for one truth to pass the whole condition
