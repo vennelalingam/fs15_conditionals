@@ -10,7 +10,7 @@ console.log(thirsty, " should equal ", getDrink);
 let thirsty = true;
 let getDrink = null;
 
-if( thirsty === true) {
+if(thirsty) {
     getDrink = true;
 }
 else getDrink = false;
@@ -29,22 +29,41 @@ Hint to test output:
 console.log("light is ", light, " so car should ", driveCar);
 */
 
-const light = "violet";
+let light = "yellow";
 let driveCar = null;
 
-if(light === "red") {
-    driveCar = "Stop";
-}
-else if(light === "green") {
-    driveCar = "Go";
-}
-else if(light === "yellow") {
-    driveCar = "Wait";
-}
-else  
-    driveCar = "Light Malfunction";
+// if(light === "red") {
+//     driveCar = "Stop";
+// }
+// else if(light === "green") {
+//     driveCar = "Go";
+// }
+// else if(light === "yellow") {
+//     driveCar = "Wait...";
+// }
+// else  
+//     driveCar = "Light Malfunction";
+// console.log("light is ", light, " so car should ", driveCar);
 
-console.log("light is ", light, " so car should ", driveCar);
+// using Switch statement
+
+switch (light) {
+    case "red":
+        driveCar = "Stop";
+        console.log(driveCar);
+        break;
+    case "green":
+        driveCar = "GO";
+        console.log(driveCar);
+        break;
+    case "yellow":
+        driveCar = "Wait..";
+        console.log(driveCar);
+        break;
+    default:
+        driveCar = "Light Malfunction";
+        console.log(driveCar);
+}
 
 /*
 
@@ -98,20 +117,26 @@ dietary restrictions are nothing (null).
 
 let personDiet = "non-vegetarian";
 let dietaryRestrictions = null;
+
 if(personDiet === "vegan") {
     dietaryRestrictions = "No Meat or Dairy";
 }
 else if(personDiet === "vegetarian") {
     dietaryRestrictions = "No Meat";
 }
-else dietaryRestrictions = "null";
-console.log ("Person's dietary restrictions:", dietaryRestrictions);
+// else dietaryRestrictions = "null";
+// console.log ("Person's dietary restrictions:", dietaryRestrictions);
+// short-circuit for printing things on screen
+console.log(
+    `The person is ${personDiet}, therefore their restrictions are 
+    ${dietaryRestrictions || "nothing"}`
+);
 
 ///////////////////////////////
 
 let personA = null;
 let eatsDairy1 = false;
-let eatsMeat1 = true;
+let eatsMeat1 = false;
 
 if ((eatsDairy1 === false) && (eatsMeat1 === false)) {
     personA = "vegan";
@@ -123,6 +148,7 @@ if ((eatsDairy1 === false) && (eatsMeat1 === false)) {
 console.log(personA);
 
 /////////// Simplified Solution //////////
+
 let personB = null;
 let eatsDairy2 = false;
 let eatsMeat2 = true;
@@ -135,7 +161,9 @@ if(!eatsDairy2 && !eatsMeat2) {
     personB = "no dietary restrictions";
 }
 console.log(personB)
+
 /////// stack ternary operators /////////
+
 let eatsDairy3 = false;
 let eatsMeat3 = true;
 let personC = (!eatsDairy3 && !eatsMeat3)
@@ -144,6 +172,8 @@ let personC = (!eatsDairy3 && !eatsMeat3)
     ? "vegetarian"
     : "no dietary restrictions";
 console.log(personC);
+
+
 /*
 6)
 Debug the code below. You will need
@@ -214,8 +244,8 @@ console.log((eatsMeat && !eatsDairy)) ? "non-vegetarian" : null
 Write code for the following situation:
 Sofia can drive manual and automatic cars.
 Diego only knows how to drive automatic.
-Sofia prefers to drive long distances (> 10 km).
-Diego prefers to drive short distances.
+Sofia ONLY drives long distances (> 10 km).
+Diego ONLY drives short distances.
 
 text output:
 console.log("The car is ", car, " and the distance is ", distance, "km, so the driver is: ", driver);
@@ -226,11 +256,23 @@ let car = "automatic";
 let driver = null;
 let distance = 9;
 
-if ((distance > 10) && (car === "manual" || "automatic")) {
+// if ((distance > 10) && (car === "manual" || "automatic")) {
+//     driver = "Sofia";
+// }
+// else if ((car === "automatic") && (distance <= 10)) 
+//     driver = "Diego";
+// console.log("The car is ", car, " and the distance is ", distance, "km, so the driver is: ", driver)
+
+////////// simplified //////////
+
+if (distance >= 11) {
     driver = "Sofia";
 }
-else if ((car === "automatic") && (distance <= 10)) 
+else if (car === "automatic"){
     driver = "Diego";
+} else {
+    driver = "None"
+}
 console.log("The car is ", car, " and the distance is ", distance, "km, so the driver is: ", driver)
 
 /*
@@ -247,8 +289,8 @@ console.log(canVote);
 */
 // problemNumber(9);
 
-const age = 27;
-canVote = null;
+// const age = NaN;
+// canVote = null;
 
 // if(typeof age !== "number"){
 //   canVote = "Input is not a number";
@@ -258,10 +300,34 @@ canVote = null;
 
 // console.log(canVote)
 
-if(typeof age !== "number"){
+const age = NaN;
+canVote = null;
+
+//There is one specific function built in JS to check 
+//if the number is Not a Number ie., isNaN
+
+if(typeof age !== "number" || isNaN(age)){
     canVote = "Input is not a number";
-} else (typeof age === "number" && age < 18) ? (canVote = "Too young") : (canVote ="Legal voting  age")
-console.log(canVote)
+} else (typeof age === "number" && age < 18) 
+    ? (canVote = "Too young") 
+    : (canVote ="Legal voting  age")
+
+console.log(canVote);
+
+////////////////////////
+
+const age1 = 7;
+canVote1 = null;
+
+canVote1 = 
+    typeof age1 !== "number"
+    ? "input is not a number"
+    : age1 < 18
+        ? "too young"
+        : "legal voting age";
+
+console.log(canVote1)
+
 /*
 10)
 Get rid of the nested conditionals in
@@ -275,12 +341,12 @@ console.log("The temp is ", temp, ", so the weather is ", weather);
 */
 // problemNumber(10);
 
-let temp = 111;
+let temp = 14.5;
 let weather = null;
 
 if (temp < 15) {
     weather = "freezing";
-  } else if( temp > 14 && temp < 31) {
+  } else if( temp >= 15 && temp <= 30) {
     weather = "warm";
   }
  else if (temp >= 31) { 

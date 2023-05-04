@@ -20,3 +20,5 @@ let f = a || b || c || d || e;
 console.log(f); 4
 
 || checks for one truth to pass the whole condition
+
+
